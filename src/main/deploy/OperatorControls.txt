@@ -1,0 +1,6 @@
+Elevator - TBD
+Elbow - set positions
+Wrist - set positions
+
+ABYX
+possible bumpers
