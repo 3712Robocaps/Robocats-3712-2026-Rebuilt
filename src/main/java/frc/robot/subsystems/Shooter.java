@@ -25,7 +25,7 @@ public class Shooter extends SubsystemBase{
 
         config
                 .inverted(false)
-                .idleMode(IdleMode.kBrake)
+                .idleMode(IdleMode.kCoast)
                 .smartCurrentLimit(40);
 
         config.closedLoop

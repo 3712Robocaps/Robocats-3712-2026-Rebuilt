@@ -27,10 +27,12 @@ import frc.robot.commands.swervedrive.superStructure.RollerCommand;
 import frc.robot.commands.swervedrive.superStructure.IntakeCommand;
 import frc.robot.commands.swervedrive.superStructure.ManagerCommand;
 import frc.robot.commands.swervedrive.superStructure.ShooterCommand;
+import frc.robot.commands.swervedrive.superStructure.pullStartCommand;
 import frc.robot.subsystems.Roller;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Manager;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.pullStart;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import swervelib.SwerveInputStream;
 
@@ -53,6 +55,7 @@ public class RobotContainer
   private Intake mIntake = new Intake();
   private Roller mRoller = new Roller();
   private Manager mManager = new Manager();
+  private pullStart mPullStart = new pullStart();
   
   /**
    * Converts driver input into a field-relative ChassisSpeeds that is controlled by angular velocity.
@@ -157,6 +160,7 @@ public class RobotContainer
       shooterXbox.leftBumper().whileTrue(new RollerCommand(mRoller, 1.8));
       shooterXbox.rightBumper().whileTrue(new RollerCommand(mRoller, -1.8));
       shooterXbox.rightTrigger().whileTrue(new ParallelCommandGroup(new ShooterCommand(mShooter, 0.8),new SequentialCommandGroup(new WaitCommand(1),new ManagerCommand(mManager, 1))));
+      new Trigger(mPullStart::consumePullTrigger).onTrue(new pullStartCommand(mPullStart));
     }
 
     /*if (Robot.isSimulation())
